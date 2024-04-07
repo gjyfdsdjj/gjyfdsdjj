@@ -17,5 +17,5 @@ Here are some ideas to get you started:
 ## introduction
 hi
 ## career
-
+student of Yeungnam University
 ## links
