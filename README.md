@@ -15,7 +15,7 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 ## introduction
-name : kimdorim
+name : Kim Dorim
 ## career
 student of Yeungnam University
 ## links
