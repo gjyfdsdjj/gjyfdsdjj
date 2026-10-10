@@ -78,4 +78,20 @@ Java · Spring Boot · Python · FastAPI · MQTT
 
 ---
 
-<sub>각 서비스는 팀의 공동 결과물이며, 위 설명은 제 PR로 확인되는 기여 범위입니다.</sub>
+### [Smart Grid Optimization Platform · SGOP](https://github.com/gjyfdsdjj/Smart-Grid-Optimization-Platform)
+
+전력 수요 예측과 선로 위험도를 비교하는 스마트 그리드 시뮬레이션 플랫폼  
+<sub>Python · Streamlit · Plotly · pandas · TensorFlow · pytest</sub>
+
+- **시나리오 비교:** 현재 예측 결과를 시나리오 A로 저장하고, 설정 변경 후 결과 B와 총부하 그래프·위험 선로 이용률을 비교하는 화면을 구현했습니다. [PR #9](https://github.com/waterspouut/Smart-Grid-Optimization-Platform/pull/9)
+- **위험 시간대 시각화:** 위험도가 높은 선로의 피크 시각을 그래프에 표시하고, 시간대·부하 배율·위험 등급에 따른 설명을 보강했습니다. [PR #9](https://github.com/waterspouut/Smart-Grid-Optimization-Platform/pull/9)
+- **예측 시각 처리:** 예측 기준 시각이 데이터의 마지막 시각을 넘지 않도록 보정하고, 위험도 계산에서 날짜를 포함한 타임스탬프로 부하를 조회하도록 수정했습니다. [PR #9](https://github.com/waterspouut/Smart-Grid-Optimization-Platform/pull/9)
+- **학습 재현성 설정:** LSTM 학습 시 Python·NumPy·TensorFlow의 난수 시드를 고정했습니다. [PR #16](https://github.com/waterspouut/Smart-Grid-Optimization-Platform/pull/16)
+- **예측 결과 검증:** mock·baseline 예측의 결과 개수, 부하 값, 구간 상·하한 순서, 피크 시각 범위, 부하 배율 반영 등을 확인하는 테스트를 추가했습니다. [PR #17](https://github.com/waterspouut/Smart-Grid-Optimization-Platform/pull/17)
+
+**구현 포인트 — 설정 변경 전후를 비교할 수 있는 예측 화면**  
+Streamlit 세션에 기준 결과를 보관하고 새 예측 결과와 함께 표시해, 부하 배율 등을 바꿨을 때 총부하와 위험 선로 이용률이 어떻게 달라지는지 확인하도록 했습니다. 예측 결과의 구조와 값에 대한 검증은 mock·baseline을 대상으로 작성했으며, 학습된 모델의 정확도 평가는 별도로 구분했습니다.
+
+---
+
+<sub>각 프로젝트는 팀의 공동 결과물이며, 위 설명은 제 PR로 확인되는 기여 범위입니다.</sub>
