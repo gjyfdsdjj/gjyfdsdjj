@@ -2,7 +2,7 @@
 
 **Kotlin으로 사용자 화면과 데이터 흐름을 구현하는 개발자입니다.**
 
-시니어 일자리 앱 **DodoJob**에서 기업용 지원자 관리 화면부터 상세 조회, 면접 제안, 열람 상태 갱신까지 구현했습니다.
+시니어 일자리 앱 **DodoJob**에서 구직·교육과 기업 채용 관리 기능을 구현했습니다. 강의 영상 재생·이어보기, 지원서 제출, 면접 제안 등 사용자 흐름을 데이터 저장과 화면 상태 갱신까지 연결했습니다.
 
 현재는 **FEMS-MIDAS** 팀 프로젝트에서 에너지 데이터 처리 API와 MQTT 기반 장치 제어 기능을 개발하며 서비스 연동 경험을 넓히고 있습니다.
 
@@ -30,17 +30,36 @@ Java · Spring Boot · Python · FastAPI · MQTT
 ### [DodoJob](https://github.com/gjyfdsdjj/dodojob)
 
 시니어를 위한 일자리·교육·복지 Android 앱  
-<sub>Kotlin · Jetpack Compose · Coroutines · StateFlow · Supabase</sub>
+<sub>Kotlin · Jetpack Compose · Coroutines · StateFlow · Media3/ExoPlayer · Supabase</sub>
 
-- **지원자 관리 화면:** 기업이 지원자 목록을 확인하고 관련 화면으로 이동하는 UI와 내비게이션을 구현했습니다. [PR #41](https://github.com/ehdrms3535/dodojob/pull/41)
-- **지원자 상세 조회:** 지원자 정보 화면과 DB 조회를 연결했습니다. [PR #131](https://github.com/ehdrms3535/dodojob/pull/131)
-- **면접 제안:** 면접 제안 화면과 데이터 저장을 연결해 기업의 채용 업무 흐름을 구현했습니다. [PR #126](https://github.com/ehdrms3535/dodojob/pull/126)
-- **열람 상태 갱신:** 지원자 상세 조회·면접 제안 시 미열람 상태를 열람 상태로 변경하도록 연결했습니다. [PR #132](https://github.com/ehdrms3535/dodojob/pull/132)
-- **프로필 데이터 연동:** 시니어 프로필 사진을 DB 데이터와 연결했습니다. [PR #144](https://github.com/ehdrms3535/dodojob/pull/144)
+시니어의 구직·교육 기능과 기업의 채용 관리 기능을 구현하고, 화면을 Supabase 데이터와 연동했습니다.
 
-**구현 포인트 — 지원자 조회부터 면접 제안까지 연결**  
-기업이 지원자 목록에서 상세 정보를 확인하고 면접을 제안하는 흐름을 구현했습니다. ViewModel과 StateFlow로 목록·로딩·오류 상태를 관리하고, 공고 ID와 시니어 식별자를 기준으로 미열람 지원자만 열람 상태로 변경했습니다. 갱신 성공 후에는 화면의 목록 상태와 미열람 수를 함께 반영했습니다.
+#### 교육·영상
 
+- **영상 재생·이어보기:** ExoPlayer 기반 강의 영상 재생과 사용자별 마지막 재생 위치 저장·복원을 구현했습니다. [PR #106](https://github.com/ehdrms3535/dodojob/pull/106) · [PR #110](https://github.com/ehdrms3535/dodojob/pull/110)
+- **규칙 기반 강의 추천:** 희망 직무를 태그·키워드로 변환하고, 강의 태그 및 제목·설명과의 일치 점수를 계산해 상위 강의를 추천했습니다. [PR #96](https://github.com/ehdrms3535/dodojob/pull/96)
+- **수강·찜 상태 관리:** 사용자별 수강 신청 상태와 즐겨찾기를 저장하고, ViewModel의 상태에 반영했습니다. [PR #108](https://github.com/ehdrms3535/dodojob/pull/108)
+
+#### 시니어 구직
+
+- **공고 조회·지원서 제출:** 채용공고 상세 정보를 화면에 연결하고, 지원서에 필요한 정보 조회와 공고별 지원서 제출·저장을 구현했습니다. [PR #83](https://github.com/ehdrms3535/dodojob/pull/83) · [PR #121](https://github.com/ehdrms3535/dodojob/pull/121)
+- **이력서 관리:** 경력·자격증 조회와 추가 기능을 이력서 관리 화면에 연결했습니다. [PR #70](https://github.com/ehdrms3535/dodojob/pull/70)
+
+#### 기업 채용 관리
+
+- **공고·지원자 관리:** 공고와 지원자 목록의 DB 조회를 연결하고, ViewModel과 StateFlow로 목록·로딩·오류 상태를 관리했습니다. [PR #71](https://github.com/ehdrms3535/dodojob/pull/71) · [PR #79](https://github.com/ehdrms3535/dodojob/pull/79)
+- **지원자 상세·면접 제안:** 지원자 상세 정보 조회와 면접 제안 저장을 연결하고, 해당 동작에 따라 미열람 지원자를 열람 상태로 변경했습니다. [PR #131](https://github.com/ehdrms3535/dodojob/pull/131) · [PR #126](https://github.com/ehdrms3535/dodojob/pull/126) · [PR #132](https://github.com/ehdrms3535/dodojob/pull/132)
+
+#### 프로필·복지
+
+- **프로필 사진 연동:** 시니어 프로필 사진을 DB 데이터와 연결했습니다. [PR #144](https://github.com/ehdrms3535/dodojob/pull/144)
+- **복지 정보 연동:** 복지 목록·분류·검색과 사용자별 신청 내역 조회를 화면에 연결했습니다. [PR #62](https://github.com/ehdrms3535/dodojob/pull/62)
+
+**구현 포인트 — 강의 영상 이어보기**  
+사용자와 강의별로 마지막 재생 위치를 Supabase에 저장하고, 강의를 다시 열면 저장된 위치에서 재생하도록 연결했습니다. 재생 중에는 5초 간격으로 위치를 전달하고, 플레이어가 화면에서 제거될 때 마지막 위치를 전달한 뒤 자원을 해제했습니다. 저장 위치가 뒤늦게 로드되는 경우에도 플레이어에 반영하도록 처리했습니다. [PR #110](https://github.com/ehdrms3535/dodojob/pull/110)
+
+**구현 포인트 — 지원자 열람 상태와 화면 갱신**  
+지원자 상세 조회·면접 제안 시 공고 ID와 시니어 식별자를 기준으로 미열람 지원자만 열람 상태로 변경했습니다. 갱신 성공 후 화면의 목록 상태와 미열람 수를 함께 반영해 기업의 채용 업무 흐름을 연결했습니다. [PR #132](https://github.com/ehdrms3535/dodojob/pull/132)
 
 ---
 
